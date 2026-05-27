@@ -1,6 +1,11 @@
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 
-const features = [
+type Feature = {
+  title: string;
+  description: string;
+};
+
+const features: Feature[] = [
   {
     title: "Email & Password",
     description:
@@ -27,7 +32,7 @@ export default function Features() {
           </CardHeader>
 
           <CardContent>
-            <p>{feature.description}</p>
+            <p className="text-muted-foreground">{feature.description}</p>
           </CardContent>
         </Card>
       ))}

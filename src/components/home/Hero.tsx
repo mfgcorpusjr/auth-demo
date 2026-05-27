@@ -1,11 +1,12 @@
 import Link from "next/link";
+import { LucideArrowRight } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 
 export default function Hero() {
   return (
     <section className="flex flex-col items-center gap-4 max-w-2xl mx-auto">
-      <h2 className="text-3xl text-center font-bold tracking-tight">
+      <h2 className="text-3xl text-center font-black tracking-tight">
         Welcome to Auth Demo
       </h2>
 
@@ -29,7 +30,10 @@ export default function Hero() {
       </p>
 
       <Button asChild size="lg" className="max-w-50 w-full mt-4">
-        <Link href="/sign-in">Get Started</Link>
+        <Link href="/sign-in">
+          Get Started
+          <LucideArrowRight />
+        </Link>
       </Button>
     </section>
   );
