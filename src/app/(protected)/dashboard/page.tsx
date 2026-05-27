@@ -1,6 +1,12 @@
+import { Metadata } from "next";
+
 import Welcome from "@/components/dashboard/Welcome";
 import Features from "@/components/dashboard/Features";
 import AuthenticationStatus from "@/components/dashboard/AuthenticationStatus";
+
+export const metadata: Metadata = {
+  title: "Dashboard",
+};
 
 export default function DashboardPage() {
   return (

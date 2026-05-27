@@ -12,7 +12,7 @@ export default function Navbar() {
         </Link>
 
         <Button asChild>
-          <Link href="/sign-in">Sign In</Link>
+          <Link href="/auth">Sign In</Link>
         </Button>
       </Container>
     </nav>
