@@ -5,7 +5,6 @@ import { Card, CardContent } from "@/components/ui/card";
 
 type Feature = {
   icon: React.ReactElement<{ className: string }>;
-  bgColor: string;
   title: string;
   description: string;
 };
@@ -13,19 +12,16 @@ type Feature = {
 const features: Feature[] = [
   {
     icon: <LucideUser />,
-    bgColor: "bg-blue-500",
     title: "Profile",
     description: "Manage your account settings",
   },
   {
     icon: <LucideChartNoAxesCombined />,
-    bgColor: "bg-green-500",
     title: "Analytics",
     description: "View your activity data",
   },
   {
     icon: <LucideCog />,
-    bgColor: "bg-purple-500",
     title: "Settings",
     description: "Configure your preferences",
   },
@@ -37,9 +33,9 @@ export default function Features() {
       {features.map((feature) => (
         <Card key={feature.title}>
           <CardContent className="flex items-center gap-4">
-            <div className={`p-2 rounded-full ${feature.bgColor}`}>
+            <div className={`p-2 rounded-full bg-primary/5`}>
               {cloneElement(feature.icon, {
-                className: "size-5 text-white",
+                className: "size-5 text-primary",
               })}
             </div>
 
