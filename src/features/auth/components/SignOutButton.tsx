@@ -1,24 +1,15 @@
 "use client";
 
-import { useRouter } from "next/navigation";
-
 import { Button } from "@/components/ui/button";
 
-import { authClient } from "@/lib/auth-client";
+import useSignOut from "@/features/auth/hooks/useSignOut";
 
 export default function SignOutButton() {
-  const router = useRouter();
+  const { signOut, isPending } = useSignOut();
 
-  const handleSignOut = async () => {
-    await authClient.signOut({
-      fetchOptions: {
-        onSuccess: () => {
-          router.push("/");
-          router.refresh();
-        },
-      },
-    });
-  };
-
-  return <Button onClick={handleSignOut}>Sign Out</Button>;
+  return (
+    <Button disabled={isPending} onClick={signOut}>
+      Sign Out
+    </Button>
+  );
 }
