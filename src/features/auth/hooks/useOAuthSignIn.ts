@@ -1,12 +1,9 @@
 import { useTransition } from "react";
-import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 
 import { authClient } from "@/lib/auth-client";
 
 const useOAuthSignIn = () => {
-  const router = useRouter();
-
   const [isPending, startTransition] = useTransition();
 
   const signIn = async (provider: string) => {
