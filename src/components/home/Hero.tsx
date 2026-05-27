@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 
 export default function Hero() {
   return (
-    <div className="flex flex-col items-center gap-4 max-w-2xl mx-auto">
+    <section className="flex flex-col items-center gap-4 max-w-2xl mx-auto">
       <h2 className="text-3xl text-center font-bold tracking-tight">
         Welcome to Auth Demo
       </h2>
@@ -31,6 +31,6 @@ export default function Hero() {
       <Button asChild size="lg" className="max-w-50 w-full mt-4">
         <Link href="/sign-in">Get Started</Link>
       </Button>
-    </div>
+    </section>
   );
 }
