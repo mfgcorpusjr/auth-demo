@@ -2,8 +2,8 @@ import Link from "next/link";
 import { headers } from "next/headers";
 
 import { Button } from "@/components/ui/button";
-import Container from "@/components/commons/Container";
-import NavLinks from "@/components/commons/NavLinks";
+import Container from "@/components/common/Container";
+import NavLinks from "@/components/common/NavLinks";
 import SignOutButton from "@/features/auth/components/SignOutButton";
 
 import { auth } from "@/lib/auth";
