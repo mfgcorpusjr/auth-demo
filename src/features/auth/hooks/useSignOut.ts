@@ -2,7 +2,7 @@ import { useTransition } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 
-import { authClient } from "@/lib/auth-client";
+import signOutAction from "@/features/auth/actions/signOutAction";
 
 const useSignOut = () => {
   const router = useRouter();
@@ -11,17 +11,14 @@ const useSignOut = () => {
 
   const signOut = () => {
     startTransition(async () => {
-      await authClient.signOut({
-        fetchOptions: {
-          onSuccess: () => {
-            router.replace("/");
-            router.refresh();
-          },
-          onError(context) {
-            toast.error(context.error.message);
-          },
-        },
-      });
+      const result = await signOutAction();
+
+      if (result.success) {
+        router.replace("/");
+        router.refresh();
+      } else {
+        toast.error(result.message);
+      }
     });
   };
 

@@ -1,12 +1,12 @@
 import { useTransition } from "react";
-import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
+import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "sonner";
 
 import signInSchema from "@/features/auth/schemas/signInSchema";
-import { authClient } from "@/lib/auth-client";
+import signInAction from "@/features/auth/actions/signInAction";
 
 export type SignInFormData = z.infer<typeof signInSchema>;
 
@@ -25,18 +25,14 @@ const useSignIn = () => {
 
   const signIn = (formData: SignInFormData) => {
     startTransition(async () => {
-      await authClient.signIn.email({
-        ...formData,
-        fetchOptions: {
-          onSuccess: () => {
-            router.replace("/dashboard");
-            router.refresh();
-          },
-          onError(context) {
-            toast.error(context.error.message);
-          },
-        },
-      });
+      const result = await signInAction(formData);
+
+      if (result.success) {
+        router.replace("/dashboard");
+        router.refresh();
+      } else {
+        toast.error(result.message);
+      }
     });
   };
 
