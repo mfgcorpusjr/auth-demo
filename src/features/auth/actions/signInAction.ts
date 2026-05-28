@@ -1,6 +1,7 @@
 "use server";
 
 import { headers } from "next/headers";
+import { redirect } from "next/navigation";
 
 import type { SignInFormData } from "@/features/auth/hooks/useSignIn";
 import signInSchema from "@/features/auth/schemas/signInSchema";
@@ -15,11 +16,11 @@ const signInAction = async (formData: SignInFormData) => {
       body: validatedData,
       headers: await headers(),
     });
-
-    return { success: true, message: "User signed in" };
   } catch (error) {
     return renderError(error);
   }
+
+  redirect("/dashboard");
 };
 
 export default signInAction;

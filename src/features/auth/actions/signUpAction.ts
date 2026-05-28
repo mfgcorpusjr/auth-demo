@@ -1,5 +1,7 @@
 "use server";
 
+import { redirect } from "next/navigation";
+
 import type { SignUpFormData } from "@/features/auth/hooks/useSignUp";
 import signUpSchema from "@/features/auth/schemas/signUpSchema";
 import { auth } from "@/lib/auth";
@@ -15,11 +17,11 @@ const signUpAction = async (formData: SignUpFormData) => {
         name: validatedData.email,
       },
     });
-
-    return { success: true, message: "User signed up" };
   } catch (error) {
     return renderError(error);
   }
+
+  redirect("/dashboard");
 };
 
 export default signUpAction;

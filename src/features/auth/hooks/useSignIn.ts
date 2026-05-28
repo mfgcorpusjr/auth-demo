@@ -1,5 +1,4 @@
 import { useTransition } from "react";
-import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -11,8 +10,6 @@ import signInAction from "@/features/auth/actions/signInAction";
 export type SignInFormData = z.infer<typeof signInSchema>;
 
 const useSignIn = () => {
-  const router = useRouter();
-
   const [isPending, startTransition] = useTransition();
 
   const form = useForm<SignInFormData>({
@@ -27,10 +24,7 @@ const useSignIn = () => {
     startTransition(async () => {
       const result = await signInAction(formData);
 
-      if (result.success) {
-        router.replace("/dashboard");
-        router.refresh();
-      } else {
+      if (!result.success) {
         toast.error(result.message);
       }
     });
